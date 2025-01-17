@@ -7,6 +7,6 @@
 
 
 int main() {
-    printf("Funcionando normalmente");
+    printf("Funcionando normalmente\n");
     return 0;
 }
