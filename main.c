@@ -6,7 +6,8 @@
 #include <stdio.h>
 
 
-int main() {
-    printf("Funcionando normalmente\n");
+int main(int argc, char *argv[]) {
+    int n = readFiles(argv[1], argv[2]);
+    printf("%d\n", n);
     return 0;
 }
