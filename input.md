@@ -1,5 +1,7 @@
-4 2
+6 2
 Verstappen RBR
-Perez RBR
+Aspas Loud
 Leclerc Ferrari
+Joao Loud
 Sainz Ferrari
+Perez RBR

@@ -22,9 +22,7 @@ void printSetTeams(Team *setTeams, int numTeams) {
 
 int main() {
     char *inputFile = "input.md";
-    char *outputFile = "output.md";
-
-    int teste = 1;
+    //char *outputFile = "output.md";
     
     Team *setTeams = (Team *)malloc((MAX_TEAMS+1) * sizeof(Team));
     int numTeams = 0;

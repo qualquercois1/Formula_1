@@ -13,17 +13,16 @@ void insertSet(char *pilotName, char *teamName, Team *setTeams, int *numTeams, P
     tempTeam->name = (char *)malloc((strlen(teamName) + 1) * sizeof(char));
     strcpy(tempTeam->name, teamName);
     tempTeam->points = 0;
-    if (!tempTeam->pilots[0].name) {
-        tempTeam->pilots[0] = *tempPilot;
-    } else {
-        tempTeam->pilots[1] = *tempPilot;
-    }
+    tempTeam->pilots[0] = *tempPilot;
     
     (pilots)[*numPilots] = *tempPilot;
     (*numPilots)++;
+
+
     
     int findName = 0;
-    for (int i = 0; i < *numTeams; i++) {
+    int i;
+    for (i = 0; i < *numTeams; i++) {
         if (!strcmp(teamName, (setTeams)[i].name)) {
             findName = 1;
             break;
@@ -32,19 +31,12 @@ void insertSet(char *pilotName, char *teamName, Team *setTeams, int *numTeams, P
     if (!findName) {
         (setTeams)[*numTeams] = *tempTeam;
         (*numTeams)++;
+    } else {
+        (setTeams)[i].pilots[1] = *tempPilot;
     }
     
     free(tempPilot);
     free(tempTeam);
-}
-
-void addSetTeams(char *pilotName, char *teamName, Team *setTeams, int *numTeams, Pilot *pilots, int *numPilots) {
-    int verify = 0;
-    if (!*numTeams) {
-        insertSet(pilotName, teamName, setTeams, numTeams, pilots, numPilots);
-    } else {
-        insertSet(pilotName, teamName, setTeams, numTeams, pilots, numPilots);
-    }
 }
 
 void readFile(char *fileName, Team *setTeams, int *numTeams, Pilot *pilots, int *numPilots) {
@@ -69,7 +61,7 @@ void readFile(char *fileName, Team *setTeams, int *numTeams, Pilot *pilots, int 
     for (int i = 0; i < n; i++) {
         fscanf(file, "%s %s", pilotName, teamName);
         // Vale lembrar que cada linha é um piloto único, já os times podem se repetir
-        addSetTeams(pilotName, teamName, setTeams, numTeams, pilots, numPilots);
+        insertSet(pilotName, teamName, setTeams, numTeams, pilots, numPilots);
     }
     
     free(pilotName);
