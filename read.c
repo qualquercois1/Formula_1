@@ -1,7 +1,78 @@
 #include "read.h"
-#include <stdio.h>
 
-int readFiles(char *inputFile, char *outputFile) {
-    printf("Arquivos recebidos: \t%s \t%s\n", inputFile, outputFile);
-    return 1;
+void insertSet(char *pilotName, char *teamName, Team *setTeams, int *numTeams, Pilot *pilots, int *numPilots) {
+    Team *tempTeam = (Team *)malloc(sizeof(Team));
+    Pilot *tempPilot = (Pilot *)malloc(sizeof(Pilot));
+    
+    // Cria o piloto 
+    tempPilot->name = (char *)malloc((strlen(pilotName) + 1) * sizeof(char));
+    strcpy(tempPilot->name, pilotName);
+    tempPilot->points = 0; 
+    
+    // Cria o time e insere o piloto
+    tempTeam->name = (char *)malloc((strlen(teamName) + 1) * sizeof(char));
+    strcpy(tempTeam->name, teamName);
+    tempTeam->points = 0;
+    if (!tempTeam->pilots[0].name) {
+        tempTeam->pilots[0] = *tempPilot;
+    } else {
+        tempTeam->pilots[1] = *tempPilot;
+    }
+    
+    (pilots)[*numPilots] = *tempPilot;
+    (*numPilots)++;
+    
+    int findName = 0;
+    for (int i = 0; i < *numTeams; i++) {
+        if (!strcmp(teamName, (setTeams)[i].name)) {
+            findName = 1;
+            break;
+        }
+    }
+    if (!findName) {
+        (setTeams)[*numTeams] = *tempTeam;
+        (*numTeams)++;
+    }
+    
+    free(tempPilot);
+    free(tempTeam);
+}
+
+void addSetTeams(char *pilotName, char *teamName, Team *setTeams, int *numTeams, Pilot *pilots, int *numPilots) {
+    int verify = 0;
+    if (!*numTeams) {
+        insertSet(pilotName, teamName, setTeams, numTeams, pilots, numPilots);
+    } else {
+        insertSet(pilotName, teamName, setTeams, numTeams, pilots, numPilots);
+    }
+}
+
+void readFile(char *fileName, Team *setTeams, int *numTeams, Pilot *pilots, int *numPilots) {
+    // Abre o arquivo no modo de leitura
+    FILE *file = fopen(fileName, "r");
+    
+    // Se o arquivo não abrir, ele termina a execução
+    if (file == NULL) {
+        perror("Erro ao abrir o arquivo");
+        exit(EXIT_FAILURE);
+    }
+    // Número de pilotos e etapas
+    int n, m;
+    // Strings temporárias para armazenar o nome dos pilotos e times
+    char *pilotName = (char *)malloc(31 * sizeof(char));
+    char *teamName = (char *)malloc(31 * sizeof(char));
+    
+    // Lê os dois primeiros números do arquivo (n e m)
+    fscanf(file, "%d %d", &n, &m);
+    
+    // Lê os nomes dos pilotos e seus times
+    for (int i = 0; i < n; i++) {
+        fscanf(file, "%s %s", pilotName, teamName);
+        // Vale lembrar que cada linha é um piloto único, já os times podem se repetir
+        addSetTeams(pilotName, teamName, setTeams, numTeams, pilots, numPilots);
+    }
+    
+    free(pilotName);
+    free(teamName);
+    fclose(file);
 }

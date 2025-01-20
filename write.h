@@ -2,5 +2,4 @@
 #define __WRITE_H
 
 
-
 #endif
