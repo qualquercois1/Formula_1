@@ -26,5 +26,6 @@ void readFile(char *fileName, Team *setTeams, int *numTeams, Pilot *pilots, int 
 
 void insertSet(char *pilotName, char *teamName, Team *setTeams, int *numTeams, Pilot *pilots, int *numPilots);
 
+void stepRead(Team *setTeams, int numTeams, int position, char *name);
 
 #endif
