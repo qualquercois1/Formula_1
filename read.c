@@ -7,7 +7,7 @@ void insertSet(char *pilotName, char *teamName, Team *setTeams, int *numTeams, P
     // Cria o piloto 
     tempPilot->name = (char *)malloc((strlen(pilotName) + 1) * sizeof(char));
     strcpy(tempPilot->name, pilotName);
-    tempPilot->points = 0; 
+    tempPilot->points = 0;
     
     // Cria o time e insere o piloto
     tempTeam->name = (char *)malloc((strlen(teamName) + 1) * sizeof(char));
@@ -18,8 +18,6 @@ void insertSet(char *pilotName, char *teamName, Team *setTeams, int *numTeams, P
     (pilots)[*numPilots] = *tempPilot;
     (*numPilots)++;
 
-
-    
     int findName = 0;
     int i;
     for (i = 0; i < *numTeams; i++) {
@@ -49,14 +47,26 @@ void stepRead(Team *setTeams, int numTeams, int position, char *name) {
     //iterar sobre todos os times até encontrar o piloto
     for(int i = 0; i < numTeams; i++) {
         if(!strcmp((setTeams)[i].pilots[0].name, name)) {
+            //adiciona a pontuação do piloto
             (setTeams)[i].pilots[0].points += point;
+            //salva a posição que o piloto ganhou em um vetor
+            (setTeams)[i].pilots[0].pos[position] ++;
             break;
         } else if(!strcmp((setTeams)[i].pilots[1].name, name)) {
             (setTeams)[i].pilots[1].points += point;
+            (setTeams)[i].pilots[1].pos[position] ++;
             break;
         }        
     }
 
+}
+
+void allocPositions(Team *setTeams, int numTeams, int numPilots) {
+    for(int i=0; i<numTeams; i++) {
+        //calloc pois inicia o vetor completamente zerado
+        (setTeams)[i].pilots[0].pos = calloc(numPilots, sizeof(int));
+        (setTeams)[i].pilots[1].pos = calloc(numPilots, sizeof(int));
+    }
 }
 
 void readFile(char *fileName, Team *setTeams, int *numTeams, Pilot *pilots, int *numPilots) {
@@ -85,6 +95,7 @@ void readFile(char *fileName, Team *setTeams, int *numTeams, Pilot *pilots, int 
         // Vale lembrar que cada linha é um piloto único, já os times podem se repetir
         insertSet(pilotName, teamName, setTeams, numTeams, pilots, numPilots);
     }
+    allocPositions(setTeams, *numTeams, *numPilots);
     fscanf(file, "%s", trash);
     for(int i = 0; i < m; i++) {
         for(int j = 0; j < n; j++) {

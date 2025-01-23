@@ -28,4 +28,6 @@ void insertSet(char *pilotName, char *teamName, Team *setTeams, int *numTeams, P
 
 void stepRead(Team *setTeams, int numTeams, int position, char *name);
 
+void allocPositions(Team *setTeams, int numTeams, int numPilots);
+
 #endif

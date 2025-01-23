@@ -7,7 +7,7 @@
 #define MAX_TEAMS 20
 #define MAX_PILOTS 40
 
-void printSetTeams(Team *setTeams, int numTeams) {
+void printSetTeams(Team *setTeams, int numTeams, int numPilots) {
     for (int i = 0; i < numTeams; i++) {
         printf("Time %d: %s\n", i + 1, setTeams[i].name);
         printf("  Pontuação total: %d\n", setTeams[i].points);
@@ -15,6 +15,10 @@ void printSetTeams(Team *setTeams, int numTeams) {
         for (int j = 0; j < 2; j++) {
             printf("    Piloto %d: %s\n", j + 1, setTeams[i].pilots[j].name);
             printf("    Pontuação: %d\n", setTeams[i].pilots[j].points);
+            printf("        Posições:\n");
+            for(int k=0; k<numPilots; k++) {
+                printf("        %dº: %d\n", k+1, setTeams[i].pilots[j].pos[k]);
+            }
         }
         printf("\n");
     }
@@ -31,7 +35,7 @@ int main() {
     int numPilots = 0;
     
     readFile(inputFile, setTeams, &numTeams, pilots, &numPilots);
-    printSetTeams(setTeams, numTeams);
+    printSetTeams(setTeams, numTeams, numPilots);
     
     
     free(setTeams);
