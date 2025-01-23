@@ -1,5 +1,6 @@
 #ifndef __READ_H
 #define __READ_H
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -26,8 +27,6 @@ void readFile(char *fileName, Team *setTeams, int *numTeams, Pilot *pilots, int 
 
 void insertSet(char *pilotName, char *teamName, Team *setTeams, int *numTeams, Pilot *pilots, int *numPilots);
 
-void stepRead(Team *setTeams, int numTeams, int position, char *name);
 
-void allocPositions(Team *setTeams, int numTeams, int numPilots);
 
 #endif

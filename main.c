@@ -35,6 +35,7 @@ int main() {
     int numPilots = 0;
     
     readFile(inputFile, setTeams, &numTeams, pilots, &numPilots);
+    processTeamPoints(setTeams, numTeams);
     printSetTeams(setTeams, numTeams, numPilots);
     
     
