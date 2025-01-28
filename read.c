@@ -1,6 +1,6 @@
 #include "read.h"
 
-void insertSet(char *pilotName, char *teamName, Team *setTeams, int *numTeams, Pilot *pilots, int *numPilots) {
+void insertSet(char *pilotName, char *teamName, Team *setTeams, int *numTeams, int *numPilots) {
     Team *tempTeam = (Team *)malloc(sizeof(Team));
     Pilot *tempPilot = (Pilot *)malloc(sizeof(Pilot));
     
@@ -8,6 +8,7 @@ void insertSet(char *pilotName, char *teamName, Team *setTeams, int *numTeams, P
     tempPilot->name = (char *)malloc((strlen(pilotName) + 1) * sizeof(char));
     strcpy(tempPilot->name, pilotName);
     tempPilot->points = 0;
+    tempPilot->podium = 0;
     
     // Cria o time e insere o piloto
     tempTeam->name = (char *)malloc((strlen(teamName) + 1) * sizeof(char));
@@ -15,7 +16,6 @@ void insertSet(char *pilotName, char *teamName, Team *setTeams, int *numTeams, P
     tempTeam->points = 0;
     tempTeam->pilots[0] = *tempPilot;
     
-    (pilots)[*numPilots] = *tempPilot;
     (*numPilots)++;
 
     int findName = 0;
@@ -69,7 +69,7 @@ void allocPositions(Team *setTeams, int numTeams, int numPilots) {
     }
 }
 
-void readFile(char *fileName, Team *setTeams, int *numTeams, Pilot *pilots, int *numPilots) {
+void readFile(char *fileName, Team *setTeams, int *numTeams, int *numPilots) {
     // Abre o arquivo no modo de leitura
     FILE *file = fopen(fileName, "r");
     
@@ -93,7 +93,7 @@ void readFile(char *fileName, Team *setTeams, int *numTeams, Pilot *pilots, int 
     for (int i = 0; i < n; i++) {
         fscanf(file, "%s %s", pilotName, teamName);
         // Vale lembrar que cada linha é um piloto único, já os times podem se repetir
-        insertSet(pilotName, teamName, setTeams, numTeams, pilots, numPilots);
+        insertSet(pilotName, teamName, setTeams, numTeams, numPilots);
     }
     allocPositions(setTeams, *numTeams, *numPilots);
     fscanf(file, "%s", trash);

@@ -5,4 +5,6 @@
 
 void processTeamPoints(Team *setTeams, int numTeams);
 
+Pilot* createPilotsArray(Team *setTeams, int numTeams, int numPilots);
+
 #endif

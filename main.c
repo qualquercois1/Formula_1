@@ -9,19 +9,16 @@
 
 void printSetTeams(Team *setTeams, int numTeams, int numPilots) {
     for (int i = 0; i < numTeams; i++) {
-        printf("Time %d: %s\n", i + 1, setTeams[i].name);
-        printf("  Pontuação total: %d\n", setTeams[i].points);
-        
-        for (int j = 0; j < 2; j++) {
-            printf("    Piloto %d: %s\n", j + 1, setTeams[i].pilots[j].name);
-            printf("    Pontuação: %d\n", setTeams[i].pilots[j].points);
-            printf("        Posições:\n");
-            for(int k=0; k<numPilots; k++) {
-                printf("        %dº: %d\n", k+1, setTeams[i].pilots[j].pos[k]);
-            }
-        }
-        printf("\n");
+        printf("%d %s %d\n", i+1, (setTeams)[i].name, (setTeams)[i].points);
     }
+    printf("---\n");
+}
+
+void printPilots(Pilot *pilots, int numPilots) {
+    for(int i=0; i<numPilots; i++) {
+        printf("%d %s %d %d %d\n", i+1, pilots[i].name, pilots[i].points, pilots[i].vic, pilots[i].podium);
+    }
+    printf("---\n");
 }
 
 int main() {
@@ -31,13 +28,14 @@ int main() {
     Team *setTeams = (Team *)malloc((MAX_TEAMS+1) * sizeof(Team));
     int numTeams = 0;
     
-    Pilot *pilots = (Pilot *)malloc((MAX_PILOTS+1) * sizeof(Pilot));
+    Pilot *pilots = NULL;
     int numPilots = 0;
     
-    readFile(inputFile, setTeams, &numTeams, pilots, &numPilots);
+    readFile(inputFile, setTeams, &numTeams, &numPilots);
     processTeamPoints(setTeams, numTeams);
+    pilots = createPilotsArray(setTeams, numTeams, numPilots);
+    printPilots(pilots, numPilots);
     printSetTeams(setTeams, numTeams, numPilots);
-    
     
     free(setTeams);
     free(pilots);
