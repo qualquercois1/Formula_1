@@ -34,6 +34,8 @@ int main() {
     readFile(inputFile, setTeams, &numTeams, &numPilots);
     processTeamPoints(setTeams, numTeams);
     pilots = createPilotsArray(setTeams, numTeams, numPilots);
+    orderPilots(pilots, numPilots);
+    orderTeams(setTeams, numTeams);
     printPilots(pilots, numPilots);
     printSetTeams(setTeams, numTeams, numPilots);
     

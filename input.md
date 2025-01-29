@@ -1,16 +1,20 @@
-4 2
+4 3
 Verstappen RBR
 Perez RBR
 Leclerc Ferrari
 Sainz Ferrari
 ---
 Verstappen
-Perez
 Sainz
 Leclerc
+Perez
 ---
 Perez
 Sainz
 Leclerc
 Verstappen
 ---
+Perez
+Leclerc
+Verstappen
+Sainz
