@@ -11,7 +11,7 @@ Para executar basta seguir os seguintes passos:
 3. Executar o comando "`make`" para criação dos arquivos.
 4. E por fim executar o comando "`./main <arquivo-de-entrada> <arquivo-de-saida>`" para executar o código
 
-OBS. A criação dos arquivos de entrada e saída fica por conta do usuário e devem estar no mesmo diretório de execução do projeto.
+OBS. A criação dos arquivos de entrada e saída fica por conta do usuário e devem ser passados os diretorios dos arquivos por linha de comando.
 
 O resultado é mostrado no arquivo no saída inserído pelo usuário de acordo com o arquivo de entrada inserído pelo usuário.
 
