@@ -2,7 +2,7 @@
 Este é um trabalho, do aluno **Cássio dos Santos Rodrigues**, da matéria PC1(Programação de Computadores 1) ministrada pelo professor **Daniel Saad**, do curso de Ciência da Computação do IFB (Instituto Federal de Brasília) Campus Taguatinga.
 
 ## Requisitos
-Para execução do código é necessário ter instalado o compilador GCC na versão 10.2.0 ou mais recente, e o make para geração de arquivos através do makefile.
+Para execução do código é necessário ter instalado o compilador GCC na versão 10.2.0 ou mais recente, e o make para geração de arquivos através do makefile. O Sitema Operacional utilizado para criação do projeto foi o LINUX, qualquer outro sistema utilizado para execução pode não funcionar corretamente.
 
 ## Execução
 Para executar basta seguir os seguintes passos:
