@@ -3,12 +3,11 @@
 
 void processTeamPoints(Team *setTeams, int numTeams) {
     for(int i=0; i<numTeams; i++) {
+        //calcula a pontuação dos times, vitorias e podiums dos pilotos
         int sum = 0;
         sum += (setTeams)[i].pilots[0].points + (setTeams)[i].pilots[1].points;
         setTeams[i].points = sum;
-    }
     
-    for(int i=0; i<numTeams; i++) {
         (setTeams)[i].pilots[0].vic = (setTeams)[i].pilots[0].pos[0];
         (setTeams)[i].pilots[1].vic = (setTeams)[i].pilots[1].pos[0];
     

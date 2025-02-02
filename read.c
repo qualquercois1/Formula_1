@@ -16,8 +16,10 @@ void insertSet(char *pilotName, char *teamName, Team *setTeams, int *numTeams, i
     tempTeam->points = 0;
     tempTeam->pilots[0] = *tempPilot;
     
+    //sempre tera um novo piloto entao incrementa
     (*numPilots)++;
 
+    //implementei um set para não repetir os times
     int findName = 0;
     int i;
     for (i = 0; i < *numTeams; i++) {
@@ -40,6 +42,7 @@ void insertSet(char *pilotName, char *teamName, Team *setTeams, int *numTeams, i
 void stepRead(Team *setTeams, int numTeams, int position, char *name) {
     int points[] = {25,18,15,12,10,8,6,4,2,1,0};
     
+    //pontuação apos a decima posição é sempre a mesma da decima posição
     if(position >= 10) position = 10;
 
     int point = points[position];
@@ -53,6 +56,7 @@ void stepRead(Team *setTeams, int numTeams, int position, char *name) {
             (setTeams)[i].pilots[0].pos[position] ++;
             break;
         } else if(!strcmp((setTeams)[i].pilots[1].name, name)) {
+            //faz a mesma coisa do if acima com o outro piloto
             (setTeams)[i].pilots[1].points += point;
             (setTeams)[i].pilots[1].pos[position] ++;
             break;
@@ -99,6 +103,7 @@ void readFile(char *fileName, Team *setTeams, int *numTeams, int *numPilots) {
     fscanf(file, "%s", trash);
     for(int i = 0; i < m; i++) {
         for(int j = 0; j < n; j++) {
+            //faz a leitura e registra o pontos do piloto
             fscanf(file, "%s", pilotName);
             stepRead(setTeams, *numTeams, j, pilotName);
         }

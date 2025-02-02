@@ -16,8 +16,10 @@ void printPilots(FILE *file, Pilot *pilots, int numPilots) {
 }
 
 void writeResult(const char *fileName, Team *teams, Pilot *pilots, int numTeams, int numPilots){
+    //abre o arquivo em modo de escrita
     FILE *file = fopen(fileName, "w");
 
+    //escreve no arquivo os resultados
     printPilots(file, pilots, numPilots);
     printTeams(file, teams, numTeams);
 }

@@ -24,7 +24,15 @@ int main() {
     orderTeams(setTeams, numTeams);
     writeResult(outputFile, setTeams, pilots, numTeams, numPilots);
     
+    //liberando memoria alocada
+    for(int i=0; i<numTeams; i++) {
+        for(int j=0; j<2; j++) {
+            free(setTeams[i].pilots[j].name);
+            free(setTeams[i].pilots[j].pos);
+        }
+        free(setTeams[i].name);
+    }
     free(setTeams);
     free(pilots);
-    return 0;
+    return 0;  
 }
