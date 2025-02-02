@@ -7,9 +7,9 @@
 #define MAX_TEAMS 20
 #define MAX_PILOTS 40
 
-int main() {
-    char *inputFile = "input.md";
-    char *outputFile = "output.md";
+int main(int argc, char *argv[]) {
+    char *inputFile = argv[1];
+    char *outputFile = argv[2];
     
     Team *setTeams = (Team *)malloc((MAX_TEAMS+1) * sizeof(Team));
     int numTeams = 0;
